@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Water";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/StyleSheet2.css"
+</head>
+
+@{
+    if (IsPost)
+    {
+        var field01 = Request["numID"];
+        var field02 = Request["txtQuantity"];
+        var field03 = Request["txtFName"];
+        var field04 = Request["txtLName"];
+        var field05 = Request["type"];
+        var tempData = field01.ToString() + "," + field02.ToString() + "," + field03.ToString() + "," + field04.ToString() + "," + field05.ToString() + ",:";
+
+        var dataFile = Server.MapPath("~/App_Data/WaterDonations.txt");
+        File.AppendAllText(dataFile, tempData);
+    }
+}
+
+<body>
+    <h2>Pledge Water</h2>
+
+    <div class="container">
+        <div class="row">
+            <form id="formWater" method="post">
+                @using (Html.BeginForm("Index", "Water", FormMethod.Post))
+                {
+                <div class="col-lg-1" style="width:50%">
+                    <table>
+                        <tr>
+                            <td> <label>Pledge Sealed Drinking Water (Liters):</label> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" id="Quantity" class="rounded" name="txtQuantity" /> </td>
+                        </tr>
+                        <tr>
+                            <td> <label>ID Number:</label> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" id="numID" class="rounded" name="numID" /> </td>
+                        </tr>
+                        <tr>
+                            <td> <label>First Name:</label> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" id="txtFName" class="rounded" name="txtFName" /> </td>
+                        </tr>
+                        <tr>
+                            <td> <label>Last Name:</label> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" id="txtLName" class="rounded" name="txtLName" /> </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="col-lg-1">
+                    <div>
+                        <table>
+                            <tr>
+                                <td> <label>Pledge Reccurance:</label> </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select name="type" id="dbType">
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                        <option value="Yearly">Yearly</option>
+                                        <option value="None">None</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> <input type="submit" id="btnSubmit" value="Create" class="rounded" style="background-color:cornflowerblue; color:white; margin-top:30px" /> </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                }
+            </form>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,35 @@
+﻿body {
+
+}
+
+label {
+    font-size:large;
+    font-weight:bolder;
+    margin-top: 15px;
+}
+
+.rounded {
+    border-radius:15px;
+}
+
+:root {
+    --diameter: 80px;
+}
+
+.divCent {
+    position: absolute;
+    top: calc(40% - var(--diameter)/2);
+    right: calc(50% - var(--diameter)/2);
+    aspect-ratio: 1;
+    width: var(--diameter);
+    border-radius: 100%;
+}
+
+input {
+    height: 50px;
+    width: 300px;
+    font-size: 30px;
+    font-weight: bolder;
+    border: solid 1px;
+    text-align:center;
+}

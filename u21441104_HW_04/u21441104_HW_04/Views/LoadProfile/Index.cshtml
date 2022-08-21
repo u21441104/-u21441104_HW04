@@ -1,0 +1,98 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Load";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/StyleSheet1.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form id="formLoad" method="post">
+                @using (Html.BeginForm("Index", "Load", FormMethod.Post))
+                {
+                    <div class="col-lg-1" style="width:50%">
+                        <table>
+                            <tr>
+                                <td> <label>Enter ID Number:</label> </td>
+                            </tr>
+                            <tr>
+                                <td> <input type="text" id="numID" class="rounded" name="numID" /> </td>
+                            </tr>
+                            <tr>
+                                <td> <label>Password:</label> </td>
+                            </tr>
+                            <tr>
+                                <td> <input type="password" id="txtPassword" class="rounded" name="txtPassword" /> </td>
+                            </tr>
+                            <tr>
+                                <td> <input type="submit" id="btnSubmit" value="Create" class="rounded" style="background-color:cornflowerblue; color:white; margin-top:30px" /> </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-1">
+                        <div>
+
+
+                            <label>Food</label>
+                            <table class="table">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Quantity</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Type</th>
+                                </tr>
+
+                                @try { foreach (var food in Model.Food) 
+                                {
+                                    <tr style="@(ViewBag.Pass == "true" ? "display:none" : "display:block")">
+                                        <td>@food.NumID</td>
+                                        <td>@food.hasDonated()</td>
+                                        <td>@food.FName</td>
+                                        <td>@food.LName</td>
+                                        <td>@food.Type</td>
+                                    </tr>
+
+                                    }
+                                }
+                                catch (Exception) { }
+                            </table>
+
+                            <label> Water </label>
+                            <table class="table">
+
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Quantity</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Reccurance</th>
+                                </tr>
+
+                                    @try { foreach (var water in Model.Water)
+                                    {
+
+                            <tr style="@(ViewBag.Pass == "true" ? "visibility:hidden" : "visibility:visible")">
+                                <td>@water.NumID</td>
+                                <td>@water.hasDonated()</td>
+                                <td>@water.FName</td>
+                                <td>@water.LName</td>
+                                <td>@water.Recurrance</td>
+                            </tr>
+                                        }
+                                    }
+                                    catch (Exception) { }    
+                                </table>
+
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</body>
